@@ -1,0 +1,49 @@
+<textarea rows="5" id="excelPasteBox" placeholder="Paste your excel form data here..."></textarea>
+     <textarea rows="5" id="excelPasteData"  ng-change="paste()" ng-model="x" placeholder="Paste your excel form data here ng..."></textarea> 
+         
+         <hr />
+           
+           <form method="post">
+                <div id="productTable">
+                </div>
+                <p align="right" id="submitParagraph" style="display:none;"> 
+                    <input type="submit" id="submitDataButton" value="Submit">
+                </p>
+                
+           </form>
+  	 <form name="frmProducts" novalidate>    
+       
+       <table border="2" ng-show="products.length>0" class="table table-bordered table-striped">
+         <tr>
+           <th> number</th>
+           <th>description</th>
+           <th>brand name</th>
+           <th>quantity </th>
+           <th>price</th>
+           <th>condition</th>
+           <th>location</th>
+           <th>Total</th>
+           <th>edit</th>
+         </tr>
+       <tr ng-repeat="product in products"> 
+           <td style="margin:0;padding:0;" > <input class="form-control alignExcelInput" type="text" ng-model="product.number" ng-required="true" /></td>
+           <td width="260px" style="margin:0;padding:0;">  <input class="form-control alignExcelInput" type="textarea" rows="4" cols="50" ng-model="product.description"/> </td>
+           <td style="margin:0;padding:0;"><input class="form-control alignExcelInput" type="text" ng-model="product.brand_name"  /> </td>
+           <td style="margin:0;padding:0;"><input type="number" min="0" class="form-control alignExcelInput" ng-model="product.quantity" ng-required="true" /> </td>
+           <td style="margin:0;padding:0;"><input type="number" min="0" class="form-control alignExcelInput" ng-model="product.price" ng-required="true" /> </td>
+           <td style="margin:0;padding:0;" ><input type="text" class="form-control alignExcelInput" ng-model="product.condition" ng-required="true" /> </td>
+           <td style="margin:0;padding:0;" > <input type="text" class="form-control alignExcelInput" ng-model="product.location" ng-required="true" /> </td>
+           <td style="margin:0;padding:0;"><span class="alignExcelInput"><b>@{{product.price*product.quantity }} </b></span></td>
+           <td style="margin:0;padding:0;" >
+               <a href="#" ng-click="removecurrentProduct($index,e)"> <img src="images/icons/deleteIcon.png"/> </a>
+
+           </td>
+       </tr> 
+       </table> 
+       <div ng-show="frmProducts.$invalid"> <!-- validation messages--> 
+         <small style="color: red; display:block; align:center"> Entered data is not valid please correct</small>
+         
+       </div> 
+        
+      <input type="button" ng-show="saveButtonVisible && products.length>0" ng-disabled="frmProducts.$invalid" value="Save" ng-click="postProducts()" class="btn btn-success"> </button> 
+     </form>

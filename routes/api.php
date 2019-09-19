@@ -16,3 +16,17 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+// List all parts 
+Route::get('parts','PartController@index');
+//display a single part
+Route::get('part/{id}','PartController@show');
+//create new part
+Route::post('part','PartController@store');
+//store array of parts
+Route::post('parts','PartController@storeArr');
+//update part
+Route::put('part/{id}','PartController@update');
+//Delete part
+Route::delete('part/{id}','PartController@destroy');
