@@ -96,11 +96,16 @@ angular.module('stockService',[])
             }
           //console.log(product);
           return $http.put("api/part/"+id,product,config);
-       }, //end update procuct 
+       }, //end update product 
        
        storeProduct: function(product){
           
           return $http.post("api/part")
+       },
+
+       deleteProduct: function(id){
+          
+          return $http.delete("api/part/"+id);
        }
 
    }//end factory 

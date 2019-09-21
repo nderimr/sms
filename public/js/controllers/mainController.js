@@ -35,7 +35,7 @@ $scope.productId;
         //event.preventDefault(); 
              if(source=='p'){
                 let index = $scope.products.findIndex( product => product.number === number);
-                 $scope.products.splice( index, 1);
+                 $scope.products.splice(index,1);
                 //call the laravel API to delete the product 
               }
               else {
@@ -44,7 +44,8 @@ $scope.productId;
         // return false;
       };  //end removecurrentProduct
 
-        //edit current product  
+        
+               //edit current product  
         // copied from https://pathgather.github.io/popeye/ not working 
        $scope.editcurrentProduct= function(id,source){
         //event.preventDefault(); 
@@ -73,7 +74,8 @@ $scope.productId;
              })
       };//end getProducts
      $scope.getProducts();
-        $scope.showModal = false;
+        
+      
       $scope.updateProduct=function(){
           
           // console.log($scope.products[$scope.editProductIndex],$scope.products[$scope.editProductIndex].id); 
@@ -84,14 +86,41 @@ $scope.productId;
 
       }
        
-
-
+     $scope.showDeleteModal=false;
+     $scope.showModal = false;
+     
       
+     
+
+
+      $scope.deleteProductId=0; 
+      //display modal dialog for delete product confirmation function 
+      $scope.showDeleteProductModal=function(id){
+        $scope.deleteProductId=id;
+        $scope.showDeleteModal = !$scope.showDeleteModal;
+      } //end showDeleteProductModal
+
+    
+        //remove product from database 
+        $scope.deleteProduct = function() {
+          StockService.deleteProduct($scope.deleteProductId)
+          .then(function(response){
+                 let index = $scope.products.findIndex( product => product.id === $scope.deleteProductId);
+                 $scope.products.splice(index,1);
+                 $scope.toggleDeleteModal(); //hide modal
+                 //alert("Product is deleted succesfully!"); //inform user product is deleted
+         })
+      };  //end deleteProduct
+
+       //togle delete modal
+      $scope.toggleDeleteModal= function() {
+            $scope.showDeleteModal = !$scope.showDeleteModal;
+      } 
+
+
       //get the product by number for edit 
       $scope.editProductIndex=0;
-      
-
-      $scope.editProduct=function(number){
+       $scope.editProduct=function(number){
         if($scope.showModal==false){
            let index = $scope.products.findIndex( product => product.number === number); 
             $scope.editProductIndex=index; 
@@ -103,8 +132,8 @@ $scope.productId;
     
      $scope.toggleModal = function(){
         $scope.showModal = !$scope.showModal;
-    }; 
+    }; //endedit product modal tutorials point
     
-    //endedit product modal tutorials point
+    
      
 });

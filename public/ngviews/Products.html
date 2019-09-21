@@ -20,7 +20,7 @@
          </tr>
       <tr dir-paginate="product in products | filter: q | itemsPerPage: pageSize" current-page="currentPage">
           
-           <td> {{product.number}} </td>
+           <td> {{product.number}}</td>
            <td> {{(currentPage-1)*pageSize+$index}}...{{product.description}} </td>
            <td> {{product.brand_name}} </td>
            <td> {{product.qty}}  </td>
@@ -32,7 +32,7 @@
               <a  href="" data-toggle="modal" data-target="#editProduct"  ng-click="editProduct(product.number)"> <img src="images/icons/editIcon.png"/> </a>
             
               <!--  <a href="" ng-click="removecurrentProduct((currentPage-1)*pageSize+$index,'p')"> <img src="images/icons/deleteIcon.png"/> </a> -->
-              <a href="" ng-click="removecurrentProduct(product.number,'p')"> <img src="images/icons/deleteIcon.png"/> </a> 
+              <a href=""  id="deleteProduct" title="Delete product" data-target="#deleteProduct" ng-click="showDeleteProductModal(product.id)"> <img src="images/icons/deleteIcon.png"/> </a> 
               </td>
         </tr>
       </table>
@@ -88,8 +88,18 @@
     </form>
   </modal> 
 
- <!-- end modal from tutorilspoint -->
-      
+  <!-- end modal from tutorilspoint -->
+
+<!-- delete product modal  -->
+   <modal  id="deleteProduct" title="Delete product" visible="showDeleteModal">
+   <form role="form">
+        <div class="form-group">
+          <label  for="Delete product"><b>Are you sure you want to delete the product</b></label>
+        </div>
+     <button type="submit"  ng-click="deleteProduct()" data-dismiss="deleteModal" class="btn btn-danger">Delete</button>
+     <button type="reset"   ng-click="toggleDeleteModal()" data-dismiss="deleteModal" class="btn btn-default">Cancel</button>
+   </form>
+</modal>      
  
 
 
