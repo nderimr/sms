@@ -15,24 +15,27 @@
            <th>condition</th>
            <th>location</th>
            <th>Total</th>
-           <th>edit/delete</th>
+           <th>edit</th>
+           <th>delete</th>
           
          </tr>
       <tr dir-paginate="product in products | filter: q | itemsPerPage: pageSize" current-page="currentPage">
           
            <td> {{product.number}}</td>
-           <td> {{(currentPage-1)*pageSize+$index}}...{{product.description}} </td>
+           <td class="description"> {{product.description}} </td>
            <td> {{product.brand_name}} </td>
            <td> {{product.qty}}  </td>
            <td> {{product.price}} </td>
            <td> {{product.condition}} </td>
            <td> {{product.location}} </td>
-           <td><b>{{product.price*product.qty }} </b></span></td>
-           <td style='white-space: nowrap' > 
-              <a  href="" data-toggle="modal" data-target="#editProduct"  ng-click="editProduct(product.number)"> <img src="images/icons/editIcon.png"/> </a>
-            
-              <!--  <a href="" ng-click="removecurrentProduct((currentPage-1)*pageSize+$index,'p')"> <img src="images/icons/deleteIcon.png"/> </a> -->
-              <a href=""  id="deleteProduct" title="Delete product" data-target="#deleteProduct" ng-click="showDeleteProductModal(product.id)"> <img src="images/icons/deleteIcon.png"/> </a> 
+           <td><b>{{product.price*product.qty | number:2 }} </b></span></td>
+           <td class="vert-aligned" > 
+              <button type="button"  class="btn block" data-toggle="modal" data-target="#editProduct"  ng-click="editProduct(product.number)">Edit</button>
+           </td>
+           <td class="vert-aligned">
+
+              <button type="button" class="btn block redbtn"  id="deleteProduct" title="Delete product" data-target="#deleteProduct" ng-click="showDeleteProductModal(product.id)">Delete</button> 
+                
               </td>
         </tr>
       </table>

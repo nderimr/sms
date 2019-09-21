@@ -55,3 +55,25 @@ in the LICENSE file at http://material.angularjs.org/HEAD/license.
 */
 /*end css style for modal */
 
+
+	.block {
+  display: block;
+  width: 100%;
+  border: none;
+  background-color: #b6b2cb;
+  padding: 0px 0px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+}
+.redbtn{	
+	background-color: #d9534f;
+}
+
+
+.table tbody > tr > td.vert-aligned {
+    vertical-align: middle;
+}
+.table tbody > tr > td.description{
+   min-width: 380px;
+}
