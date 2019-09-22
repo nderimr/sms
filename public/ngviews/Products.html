@@ -21,14 +21,14 @@
          </tr>
       <tr dir-paginate="product in products | filter: q | itemsPerPage: pageSize" current-page="currentPage">
           
-           <td> {{product.number}}</td>
-           <td class="description"> {{product.description}} </td>
-           <td> {{product.brand_name}} </td>
-           <td> {{product.qty}}  </td>
-           <td> {{product.price}} </td>
-           <td> {{product.condition}} </td>
-           <td> {{product.location}} </td>
-           <td><b>{{product.price*product.qty | number:2 }} </b></span></td>
+           <td class="vert-aligned"> {{product.number}}</td>
+           <td class="description vert-aligned"> {{product.description.substring(0, 150)+"..."}} </td>
+           <td class="vert-aligned"> {{product.brand_name}} </td>
+           <td class="vert-aligned"> {{product.qty}}  </td>
+           <td class="vert-aligned"> {{product.price}} </td>
+           <td class="vert-aligned"> {{product.condition}} </td>
+           <td class="vert-aligned"> {{product.location}} </td>
+           <td class="vert-aligned"><b>{{product.price*product.qty | number:2 }} </b></span></td>
            <td class="vert-aligned" > 
               <button type="button"  class="btn block" data-toggle="modal" data-target="#editProduct"  ng-click="editProduct(product.number)">Edit</button>
            </td>
@@ -43,7 +43,7 @@
    <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="ngviews/dirPagination.tpl.html"></dir-pagination-controls>
 
 
-<!--  modal from tutorilspoint -->
+<!--  edit modal from tutorialspoint  -->
 
 <modal  id="editProduct" title="Edit product" visible="showModal">
   
@@ -55,7 +55,7 @@
       
       <div class="form-group">
         <label for="text">Description</label>
-        <input type="textarea" rows="4" class="form-control" id="number" placeholder="Description" ng-model="products[editProductIndex].description"/>
+        <textarea rows="5" class="form-control" id="number" placeholder="Description" ng-model="products[editProductIndex].description"></textarea>
       </div>
 
       <div class="form-group">

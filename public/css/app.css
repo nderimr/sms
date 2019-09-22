@@ -65,6 +65,7 @@ in the LICENSE file at http://material.angularjs.org/HEAD/license.
   font-size: 16px;
   cursor: pointer;
   text-align: center;
+  text-decoration: blink;
 }
 .redbtn{	
 	background-color: #d9534f;
